@@ -1,6 +1,10 @@
 var frameModule = require('ui/frame');
 var UserViewModel = require('../../shared/view-models/user-view-model');
-var user = new UserViewModel();
+var user = new UserViewModel({
+    email: 'test@sq1.com',
+    password: 'test'
+});
+
 var dialogsModule = require('ui/dialogs');
 
 exports.loaded = function(args) {
