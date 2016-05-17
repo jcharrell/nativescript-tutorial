@@ -1,7 +1,7 @@
 var dialogsModule = require("ui/dialogs");
 var Observable = require("data/observable").Observable;
 var ObservableArray = require("data/observable-array").ObservableArray;
-var viewModule = require("ui/core/view");
+var socialShare = require("nativescript-social-share");
 var page;
 
 var GroceryListViewModel = require("../../shared/view-models/grocery-list-view-model");
@@ -52,3 +52,12 @@ exports.add = function() {
     // Empty the input field
     pageData.set("grocery", "");
 };
+
+exports.share = function() {
+    var list = [];
+    for (var i = 0; i < groceryList.length; i++) {
+        list.push(groceryList.getItem(i).name);
+    }
+    var listString = list.join(", ").trim();
+    socialShare.shareText(listString);
+}
