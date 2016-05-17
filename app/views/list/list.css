@@ -1,4 +1,5 @@
 ListView {
+    opacity: 0;
     margin: 5;
 }
 Label {
