@@ -7,6 +7,7 @@ var page;
 var GroceryListViewModel = require("../../shared/view-models/grocery-list-view-model");
 var groceryList = new GroceryListViewModel([]);
 var pageData = new Observable({
+    isLoading: false,
     grocery: "",
     groceryList: groceryList
 });
@@ -16,7 +17,11 @@ exports.loaded = function(args) {
     page.bindingContext = pageData;
 
     groceryList.empty();
-    groceryList.load();
+
+    pageData.set("isLoading", true);
+    groceryList.load().then(function() {
+        pageData.set("isLoading", false);
+    });
 };
 
 exports.add = function() {
